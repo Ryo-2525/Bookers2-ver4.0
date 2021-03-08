@@ -18,9 +18,9 @@
           <td><%= link_to @book.title, book_path(@book) %></td>
           <td><%= @book.body %></td>
           <!--いいね-->
-          <td><%= render 'books/favorite', book: @book %></tb>
+          <td class="favorite-btn"><%= render 'books/favorite', book: @book %></tb>
           <!--コメント-->
-          <td class="comment_buttons">コメント数：<%= @book.book_comments.count %></tb>
+          <td class="comment_count">コメント数：<%= @book.book_comments.count %></tb>
 
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
@@ -28,7 +28,13 @@
           <% end %>
         </tr>
       </table>
-      <%= render 'books/comment', book: @book,book_comment: @book_comment%>
+      <table class="book_comments">
+        <%= render 'books/comment', book: @book,book_comment: @book_comment%>
+      </table>
+      <%= form_with model:[@book,@book_comment], remote: true do |f| %>
+        <%= f.text_area :comment, size:"90x5" %>
+        <%= f.submit '送信'%>
+      <% end %>
     </div>
   </div>
 </div>

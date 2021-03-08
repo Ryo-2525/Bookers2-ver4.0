@@ -1,12 +1,5 @@
-<!--いいね-->
-          <% if book.favorited_by?(current_user) %>
-            <%= link_to book_favorites_path(book), method: :delete, remote: true do %>
-              <i class="far fa-heart" aria-hidden="true" style="color: red;"></i>
-              <%= book.favorites.count %>
-            <% end %>
-          <% else %>
-            <%= link_to book_favorites_path(book), method: :post, remote: true do %>
-              <i class="far fa-heart" aria-hidden="true"></i>
-              <%= book.favorites.count %>
-            <% end %>
-          <% end %>
+<% if book.favorited_by?(current_user) %>
+  <%= link_to book.favorites.count, book_favorites_path(book), method: :delete, remote: true, class: "fas fa-heart heart_red" %>
+<% else %>
+  <%= link_to book.favorites.count, book_favorites_path(book), method: :post, remote: true, class: "fas fa-heart heart_blue" %>
+<% end %>

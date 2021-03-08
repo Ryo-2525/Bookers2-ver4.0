@@ -1,1 +1,2 @@
-$('#comment_buttons_<%= @blog.id %>').html("<%= j(render partial: 'books/commet', locals: {book: @book}) %>");
+$("#book_<%= @book.id %> .comments-count").html("コメント数: <%= @book.book_comments.count %>");
+$(".book_comments").html("<%= j(render 'books/comment', book: @book) %>");
